@@ -29,8 +29,8 @@ def app_config():
         # Set other BrowserStack capabilities
         'bstack:options': {
             "projectName": "Diploma project for Mobile automation",
-            "buildName": "browserstack-build-DEMO With helpers",
-            "sessionName": "BStack first_test",
+            "buildName": "browserstack-build-wikipedia-app",
+            "sessionName": "bstack session wikiapp",
 
             # Set your access credentials
             "userName": USER_NAME,
