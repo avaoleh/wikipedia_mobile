@@ -5,16 +5,16 @@ from appium.options.android import UiAutomator2Options
 
 import utils.file
 
-EnvContext = Literal['emulation', 'real', 'browserstack']
+EnvContext = Literal['personal', 'emulation', 'real', 'browserstack']
 
 
 class Settings(pydantic.BaseSettings):
-    context: EnvContext = 'emulation'
+    context: EnvContext = 'personal'
 
     # --- Appium Capabilities ---
-    platformName: str = None
-    platformVersion: str = None
-    deviceName: str = None
+    platformName: str = 'android'
+    platformVersion: str = '9.0'
+    deviceName: str = 'Google Pixel 3'
     app: Optional[str] = None
     appName: Optional[str] = None
     appWaitActivity: Optional[str] = None
@@ -25,9 +25,8 @@ class Settings(pydantic.BaseSettings):
     buildName: Optional[str] = None
     sessionName: Optional[str] = None
     # --- > > BrowserStack credentials---
-    userLogin: Optional[str] = None
+    userName: Optional[str] = None
     accessKey: Optional[str] = None
-    udid: Optional[str] = None
 
     # --- Remote Driver ---
     remote_url: str = 'http://127.0.0.1:4723/wd/hub'  # it's a default appium server url
@@ -36,30 +35,12 @@ class Settings(pydantic.BaseSettings):
     timeout: float = 6.0
 
     @property
-    def run_on_browserstack(self):
-        if self.context == 'browserstack':
-            return 'hub.browserstack.com' in self.remote_url
-        return False
-
-    @property
     def driver_options(self):
         options = UiAutomator2Options()
-        if self.deviceName:
-            options.device_name = self.deviceName
-        if self.platformName:
-            options.platform_name = self.platformName
-        options.app = (
-            utils.file.abs_path_from_project(self.app)
-            if self.app and (self.app.startswith('./') or self.app.startswith('../'))
-            else self.app
-        )
-        options.new_command_timeout = self.newCommandTimeout
-        if self.udid:
-            options.udid = self.udid
-            options.ignore_hidden_api_policy_error = True
-        if self.appWaitActivity:
-            options.app_wait_activity = self.appWaitActivity
-        if self.run_on_browserstack:
+        options.device_name = self.deviceName
+        options.platform_name = self.platformName
+        options.app = self.app
+        if 'hub.browserstack.com' in self.remote_url:
             options.load_capabilities(
                 {
                     'platformVersion': self.platformVersion,
@@ -67,14 +48,13 @@ class Settings(pydantic.BaseSettings):
                         'projectName': self.projectName,
                         'buildName': self.buildName,
                         'sessionName': self.sessionName,
-                        'userName': self.userLogin,
+                        'userName': self.userName,
                         'accessKey': self.accessKey,
                     },
                 }
             )
 
         return options
-
     @classmethod
     def in_context(cls, env: Optional[EnvContext] = None) -> 'Settings':
         """
