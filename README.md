@@ -22,17 +22,16 @@
 <!-- Тест кейсы -->
 
 ### Что проверяем
-* Поиск по выражению
-* Поиск по числу
-* Поиск по html тегу
-* Поиск по пустому полю
-* Поиск по специальным символам
-
+* Test empty search
+* Test search
+* Test search html tag
+* Test search numbers
+* Test search special symbols
 
 <!-- Jenkins -->
 
 ### <img width="3%" title="Jenkins" src="images/logo_stacks/jenkins.png">  Запуск проекта в Jenkins
-### [Job](https://jenkins.autotests.cloud/job/Mobile_Wikipedia_qa_guru_python_2/)
+### [Job](https://jenkins.autotests.cloud/job/avaoleg_qa_guru_mobile_app/)
 ##### При нажатии на "Собрать сейчас" начнется сборка тестов и их прохождение, через виртуальную машину в Selenide.
 ![This is an image](images/screenshots/jenkins.png)
 
@@ -68,7 +67,7 @@
 
 ### <img width="3%" title="Allure TestOps" src="images/logo_stacks/allure_testops.png"> Интеграция с Allure TestOps
 
-### [Dashboard](https://allure.autotests.cloud/project/1727/dashboards)
+### [Dashboard](https://allure.autotests.cloud/project/2096/dashboards)
 
 ##### Так же вся отчетность сохраняется в Allure TestOps, где строятся аналогичные графики.
 ![This is an image](images/screenshots/allure_testops_dashboard.png)
