@@ -13,9 +13,12 @@ def browser_config():
     browser.config._wait_decorator = support._logging.wait_with(
         context=allure_commons._allure.StepContext
     )
-    browser.config.driver = webdriver.Remote(
-        config.settings.remote_url, options=config.settings.driver_options
-    )
+    # browser.config.driver = webdriver.Remote(
+    #     config.settings.remote_url, options=config.settings.driver_options
+    # )
+
+    browser.config.driver = webdriver.Remote("http://hub.browserstack.com/wd/hub", options=config.settings.driver_options)
+
     browser.config.timeout = config.settings.timeout * 2
 
     yield
