@@ -43,7 +43,7 @@
 
 ![This is an image](images/screenshots/browserstack.png)
 
-##### Для интеграции c Browserstack, в настройке сборки, в разделе .env указать необходимые креды. Пример кред, можно посмотреть в файле [.env_examples](https://github.com/surovp/Mobile_Wiki/blob/master/.env_examples)
+##### Для интеграции c Browserstack, в настройке сборки, в разделе .env указать необходимые креды. Пример кред, можно посмотреть в файле [.env_examples](https://github.com/avaoleh/wikipedia_mobile/blob/main/.env_examples)
 
 
 <!-- Allure report -->
