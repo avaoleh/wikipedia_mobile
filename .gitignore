@@ -227,5 +227,6 @@ cython_debug/
 
 main.py
 
-allure-results/
+allure-results
+config.personal.env.example
 config.personal.env
