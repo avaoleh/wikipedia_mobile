@@ -10,8 +10,8 @@ class User:
 
 
 user = User(
-    username='test_user',
+    username='test_user_oao',
     password='qwerty123',
-    fake_username='Tom_Cruise',
+    fake_username='Tom_Mobile_Cruise',
     fake_password='8hBXgbkiJxWl'
 )

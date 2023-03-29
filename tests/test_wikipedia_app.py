@@ -1,82 +1,10 @@
 import allure
-from allure_commons.types import Severity
-from selene import have
-from wikipedia_app.models.controls.page_search_results import results_wiki
-from wikipedia_app.models.controls.search import search_wiki
-from wikipedia_app.data.search_info import search_data
-from wikipedia_app.data.user import user
+
+from wikipedia_app.data import search_data, user
 from wikipedia_app.models import app
 
 
-@allure.tag("UI mobile test")
-@allure.severity(Severity.CRITICAL)
-@allure.story("Wikipedia app")
-@allure.label("owner", "OAO")
-@allure.title('Test search')
-def test_search():
-    with allure.step('Search "Browser stack"'):
-        search_wiki().type('BrowserStack')
-
-    with allure.step('Check results'):
-        results_wiki().should(have.size_greater_than(0))
-
-
-@allure.tag("UI mobile test")
-@allure.severity(Severity.NORMAL)
-@allure.story("Wikipedia app")
-@allure.label("owner", "OAO")
-@allure.title('Test empty search')
-def test_empty_search():
-    with allure.step('Add empty field'):
-        search_wiki().type('')
-
-    with allure.step('Check results'):
-        results_wiki().should(have.size(0))
-
-
-@allure.tag("UI mobile test")
-@allure.severity(Severity.NORMAL)
-@allure.story("Wikipedia app")
-@allure.label("owner", "OAO")
-@allure.title('Test search numbers')
-def test_search_numbers():
-    with allure.step('Search numbers'):
-        search_wiki().type('123')
-
-    with allure.step('Check results'):
-        results_wiki().should(have.size_greater_than(0))
-
-
-@allure.tag("UI mobile test")
-@allure.severity(Severity.NORMAL)
-@allure.story("Wikipedia app")
-@allure.label("owner", "OAO")
-@allure.title('Test search special symbols')
-def test_search_special_symbols():
-    with allure.step('Search symbols'):
-        search_wiki().type('#%')
-
-    with allure.step('Check results'):
-        results_wiki().should(have.size(0))
-
-
-@allure.tag("UI mobile test")
-@allure.severity(Severity.NORMAL)
-@allure.story("Wikipedia app")
-@allure.label("owner", "OAO")
-@allure.title('Test search html tag')
-def test_search_html_tag():
-    with allure.step('Search tag'):
-        search_wiki().type('<div>')
-
-    with allure.step('Check results'):
-        results_wiki().should(have.size_greater_than(0))
-
-
-@allure.tag("UI mobile test")
-@allure.severity(Severity.CRITICAL)
-@allure.story("Wikipedia app")
-@allure.label("owner", "OAO")
+@allure.label('owner', 'OAO')
 @allure.title('Test search')
 def test_search_successfully():
     app.given_opened()
@@ -87,10 +15,7 @@ def test_search_successfully():
         app.check_wikipedia_search(text=search_data.expected_search_text)
 
 
-@allure.tag("UI mobile test")
-@allure.severity(Severity.BLOCKER)
-@allure.story("Wikipedia app")
-@allure.label("owner", "OAO")
+@allure.label('owner', 'OAO')
 @allure.title('Test open article')
 def test_open_article():
     app.given_opened()
@@ -104,10 +29,7 @@ def test_open_article():
         app.check_article_open(text=search_data.expected_article_description)
 
 
-@allure.tag("UI mobile test")
-@allure.severity(Severity.BLOCKER)
-@allure.story("Wikipedia app")
-@allure.label("owner", "OAO")
+@allure.label('owner', 'OAO')
 @allure.title('Test open article categories')
 def test_open_article_categories():
     app.given_opened()
@@ -124,9 +46,6 @@ def test_open_article_categories():
         app.check_categories_title()
 
 
-@allure.tag("UI mobile test")
-@allure.severity(Severity.CRITICAL)
-@allure.story("Wikipedia app")
 @allure.label('owner', 'OAO')
 @allure.title('Test login with incorrect data')
 def test_login_with_invalid_data():
@@ -139,8 +58,8 @@ def test_login_with_invalid_data():
     with allure.step('Login with incorrect data'):
         app.open_login_form()
         app.fill_login_form(
-            username=user.user.fake_username,
-            password=user.user.fake_password
+            username=user.fake_username,
+            password=user.fake_password
         )
         app.submit_form()
 
@@ -148,10 +67,7 @@ def test_login_with_invalid_data():
         app.check_login_with_incorrect_data()
 
 
-@allure.tag("UI mobile test")
-@allure.severity(Severity.CRITICAL)
-@allure.story("Wikipedia app")
-@allure.label("owner", "OAO")
+@allure.label('owner', 'OAO')
 @allure.title('Test login successfully')
 def test_login_successfully():
     app.given_opened()

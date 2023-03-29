@@ -1,18 +1,19 @@
 [tool.poetry]
-name = "mobile-wikipedia"
+name = "wikipedia-mobile-app"
 version = "0.1.0"
-description = "This is diploma project for mobile autotests with used Browserstack."
-authors = ["Oleg Avakimyanov <avaoleg@gmail.ru>"]
+description = ""
+authors = ["Oleg Avakimyanov <avaoleg@gmail.com>"]
 readme = "README.md"
-packages = [{include = "mobile_wikipedia"}]
+packages = [{include = "wikipedia_mobile"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
 Appium-Python-Client = "2.6.1"
-selene = {version = "^2.0.0-beta.8", allow-prereleases = true}
+selene = "^2.0.0b17"
 pytest = "^7.1.3"
 allure-pytest = "^2.10.0"
 python-dotenv = "^0.21.0"
+pydantic = "^1.10.7"
 
 
 [build-system]
@@ -20,4 +21,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pytest.ini_options]
-addopts = "--alluredir=allure-results"
+addopts = " -vv -s --alluredir=allure-results "
